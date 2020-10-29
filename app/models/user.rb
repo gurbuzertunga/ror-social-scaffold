@@ -8,11 +8,12 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
-  has_many :reverse_friendship, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friends, -> { where confirm: true }, through: :friendships
+  has_many :reverse_friendship, -> { where confirm: false }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :pending_request, -> { where confirm: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friend_requests, through: :reverse_friendships
 
   def add_friend(another_user)
     friendships.create(friend_id: another_user)
