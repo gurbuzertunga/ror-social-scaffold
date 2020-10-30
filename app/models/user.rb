@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :pending_request, -> { where confirm: false }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :friend_requests, through: :reverse_friendships
 
-
   def pending_request
     results = []
     reverse_friendship.each do |request|

@@ -12,10 +12,12 @@ class FriendshipsController < ApplicationController
   def update
     accept = current_user.reverse_friendship.find_by(user_id: params[:friend_id])
     accept.confirm = true
-  if accept.save
-    Friendship.create(user_id: current_user.id, friend_id:params[:friend_id], confirm: true)
-    redirect_to users_path
-  end
+    if accept.save
+      Friendship.create(user_id: current_user.id, friend_id: params[:friend_id], confirm: true)
+      redirect_to users_path
+    else
+      redirect_to users_path, alert: 'Something went wrong with the invite!'
+    end
   end
 
   private
