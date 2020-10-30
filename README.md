@@ -1,16 +1,16 @@
 # Scaffold for social media app with Ruby on Rails
 
-> This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
+> This repo includes initial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
 
 ## Built With
 
-- Ruby v2.7.0
-- Ruby on Rails v5.2.4
+- Ruby
+- Ruby on Rails
+- VS Code
 
 ## Live Demo
 
-TBA
-
+[Live Demo Link](https://aqueous-ocean-06414.herokuapp.com/)
 
 ## Getting Started
 
@@ -18,66 +18,66 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-Ruby: 2.6.3
-Rails: 5.2.3
-Postgres: >=9.5
+Ruby
+Rails
+Postgres
 
 ### Setup
 
-Instal gems with:
+Install gems with:
 
 ```
 bundle install
 ```
+Clone the Repo with:
+~~~bash
 
+$ git clone https://github.com/gurbuzertunga/ror-social-scaffold/
+$ cd ror-social-scaffold
+~~~
 Setup database with:
+
+> make sure you have postgress sql installed and running on your system
 
 ```
    rails db:create
    rails db:migrate
 ```
 
-### Github Actions
+### Run tests
 
-To make sure the linters' checks using Github Actions work properly, you should follow the next steps:
-
-1. On your recently forked repo, enable the GitHub Actions in the Actions tab.
-2. Create the `feature/branch` and push.
-3. Start working on your milestone as usual.
-4. Open a PR from the `feature/branch` when your work is done.
-
-
+```
+    rspec 
+```
 ### Usage
 
 Start server with:
 
 ```
     rails server
+   Open `http://localhost:3000/` in your browser.
 ```
 
-Open `http://localhost:3000/` in your browser.
-
-### Run tests
-
-```
-    rpsec --format documentation
-```
-
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
-### Deployment
-
-TBA
 
 ## Authors
 
-TBA
+👤 **Gürbüz Ertunga**
+
+- Github: [@gurbuzertunga](https://github.com/gurbuzertunga)
+- Twitter: [@dantewuhu](https://twitter.com/dantewuhu)
+- Linkedin: [GurbuzErtunga](https://www.linkedin.com/in/gurbuz-ertunga-a607a2a5/)
+
+
+👤 **Kalu Agu Kalu**
+
+- Github: [@Godswilly](https://github.com/Godswilly)
+- Linkedin: [Kalu Agu Kalu](https://www.linkedin.com/in/kalu-agu-kalu/)
+- Twitter: [@KaluAguKalu17](https://twitter.com/KaluAguKalu17)
+
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
-
-Feel free to check the [issues page](issues/).
 
 ## Show your support
 
@@ -85,9 +85,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
-
-## 📝 License
-
-TBA
-
+- Project inspired by Microverse Program and The Odin Project
