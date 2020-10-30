@@ -8,15 +8,12 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
-  has_many :reverse_friendship, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friends, -> { where confirm: true }, through: :friendships
+  has_many :reverse_friendship, -> { where confirm: false }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :pending_request, -> { where confirm: false }, class_name: 'Friendship', foreign_key: 'friend_id'
-
-  def add_friend(another_user)
-    friendships.create(friend_id: another_user)
-  end
+  has_many :friend_requests, through: :reverse_friendships
 
   def pending_request
     results = []
@@ -32,12 +29,6 @@ class User < ApplicationRecord
       results << request.friend if request.confirm == false
     end
     results
-  end
-
-  def accept_request(user_id)
-    accept = reverse_friendship.find_by(user_id: user_id)
-    accept.confirm = true
-    accept.save
   end
 
   def reject_request(user_id)
