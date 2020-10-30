@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   def create
-    current_user.add_friend(params[:user_id])
+    current_user.friendships.create(friend_id: params[:user_id])
     redirect_to users_path
   end
 
@@ -10,8 +10,12 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    current_user.accept_request(params[:friend_id])
+    accept = current_user.reverse_friendship.find_by(user_id: params[:friend_id])
+    accept.confirm = true
+  if accept.save
+    Friendship.create(user_id: current_user.id, friend_id:params[:friend_id], confirm: true)
     redirect_to users_path
+  end
   end
 
   private

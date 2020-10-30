@@ -15,9 +15,6 @@ class User < ApplicationRecord
   has_many :pending_request, -> { where confirm: false }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :friend_requests, through: :reverse_friendships
 
-  def add_friend(another_user)
-    friendships.create(friend_id: another_user)
-  end
 
   def pending_request
     results = []
@@ -33,12 +30,6 @@ class User < ApplicationRecord
       results << request.friend if request.confirm == false
     end
     results
-  end
-
-  def accept_request(user_id)
-    accept = reverse_friendship.find_by(user_id: user_id)
-    accept.confirm = true
-    accept.save
   end
 
   def reject_request(user_id)
